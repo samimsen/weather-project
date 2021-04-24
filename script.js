@@ -1,22 +1,21 @@
 let weather = {
-    apiKey: "52519dbfdf6da32600b74e18836f8538",
+    apiKey: "e10fc222094540e7b4c151538212404", 
     fetchWeather: function (city) {
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${this.apiKey}`)
+        fetch(`https://api.weatherapi.com/v1/current.json?key=${this.apiKey}&q=${city}&aqi=no`)
             .then((response) => response.json())
             .then((data) => this.displayWeather(data))
     },
     displayWeather: (data) => {
-       const { country } = data.sys
-       const { name } = data
-       const { icon,description } = data.weather[0]
-       const { temp,humidity } = data.main
-       const { speed } = data.wind
+       const { country, name } = data.location
+       const { icon, text} = data.current.condition
+       const { temp_c, humidity, wind_kph } = data.current
+       console.log(country,name,icon,text,temp_c,humidity,wind_kph)
        document.querySelector(".city").innerHTML = `Weather in ${name} / ${country}`
-       document.querySelector(".icon").src = `https://openweathermap.org/img/wn/${icon}.png`
-       document.querySelector(".description").innerHTML = `${description}`
-       document.querySelector(".temp").innerHTML = `${Math.floor(Number(temp))}°C`
+       document.querySelector(".icon").src = `${icon}`
+       document.querySelector(".description").innerHTML = `${text}`
+       document.querySelector(".temp").innerHTML = `${temp_c}°C`
        document.querySelector(".humidity").innerHTML = `Humidity: ${humidity}%`
-       document.querySelector(".wind").innerHTML = `Wind speed: ${speed} km/h`
+       document.querySelector(".wind").innerHTML = `Wind speed: ${wind_kph} km/h`
        document.querySelector(".weather").classList.remove("loading")
        document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${name}')`
     },
