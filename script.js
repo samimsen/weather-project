@@ -9,7 +9,6 @@ let weather = {
        const { country, name } = data.location
        const { icon, text} = data.current.condition
        const { temp_c, humidity, wind_kph } = data.current
-       console.log(country,name,icon,text,temp_c,humidity,wind_kph)
        document.querySelector(".city").innerHTML = `Weather in ${name} / ${country}`
        document.querySelector(".icon").src = `${icon}`
        document.querySelector(".description").innerHTML = `${text}`
