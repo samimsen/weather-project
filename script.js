@@ -33,7 +33,7 @@ document.querySelector(".search-bar").addEventListener("keyup", function(event){
     }
 })
 
-let topCities = ["London","Paris","Moscow","Tokyo","Dubai","Singapore","Barcelona","New York City","Delhi","Mumbai","Madrid","İstanbul","Sofya","Ankara"]
+let topCities = ["London","Paris","Moscow","Tokyo","Dubai","Singapore","Barcelona","New York City","Delhi","Mumbai","Madrid","İstanbul","Sofia","Ankara"]
 
 let randomCity = topCities[Math.floor(Math.random()*topCities.length)]
 
